@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Double first, second;
     private Boolean isOperationClick;
     private String operation;
+    private Double result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,36 +140,42 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_multiply:
                 operation = "*";
                 first = Double.parseDouble(textView.getText().toString());
+
                 break;
 
             case R.id.btn_division:
                 operation = "/";
                 first = Double.parseDouble(textView.getText().toString());
+
                 break;
             case R.id.btn_equal:
                 //21
                 second = Double.parseDouble(textView.getText().toString());
                 //33=12+21
-                Double result = Double.valueOf(0);
-                switch (operation) {
+                //Double result = Double.valueOf(0);
+             switch (operation) {
                     case "+":
                         result = first + second;
+                        textView.setText(new DecimalFormat("##.#######").format(result));
                         break;
                     case "-":
                         result = first - second;
+                        textView.setText(new DecimalFormat("##.#######").format(result));
                         break;
                     case "*":
                         result = first * second;
+                        textView.setText(new DecimalFormat("##.#######").format(result));
                         break;
                     case "/":
-                        if (second == 0) {
+                        if (second == 0.0) {
                             textView.setText("На ноль делить нельзя!!!");
                         } else {
                             result = first / second;
+                            textView.setText(new DecimalFormat("##.#######").format(result));
                         }
                         break;
                 }
-                textView.setText(new DecimalFormat("##.#######").format(result));
+                //textView.setText(new DecimalFormat("##.#######").format(result));
                 break;
         }
         isOperationClick = true;
